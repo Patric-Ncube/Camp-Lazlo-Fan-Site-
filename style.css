@@ -1,0 +1,674 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-margin-top: 4rem;  
+}
+
+a, button, div, input, textarea {
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: "Fredoka", sans-serif;
+}
+
+body.no-scroll {
+    overflow: hidden;
+}
+
+:root {
+    --nav-background-color: rgba(41, 70, 30, 0.8);
+    --dark-green: #1A2A10;
+    --light-dark-green: #29461E;
+    --light-green: #48673B;
+    --light-lime: #ECFFDE;
+    --primary-orange: #FF9900;
+    --light-yellow: #FFFF99;
+    --bright-yellow: #F5C842;
+    --dark-brown: #3D1F0A;
+    --play-button-outline-color: rgba(194, 191, 191, 0.8);
+}
+
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.grid {
+    display: grid;
+}
+
+.grid-cols-1 {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    width: 100%; 
+    min-width: 0;  
+}
+
+.grid-cols-3-vids {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    min-width: 0;  
+    width: 100%;
+}
+
+.grid-cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+.section-heading {
+    font-size: clamp(2rem, 0.632rem + 2.632vw, 3rem);
+}
+
+/*---Navigation Start---*/
+header {
+    height: 3.75rem;
+    width: 100%;
+    position: fixed;
+    padding: 1rem 2.2rem;
+    background-color: var(--nav-background-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 10000;
+}
+
+.nav-logo {
+    outline: 0;
+}
+
+.nav-logo img {
+    height: 3.125rem;
+    z-index: 10;
+    outline: 0;
+}
+
+.navigation {
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 1.875rem;
+}
+
+.navigation-links {
+    display: flex;
+    gap: 1.875rem;
+    list-style-type: none;
+    color: white;
+}
+
+li .navigation-link{
+    text-decoration: none;
+    color: white;
+    transition: all .3s ease-in-out;
+}
+
+li .navigation-link:hover {
+    color: var(--bright-yellow);
+}
+
+/*---Hamburger Icon Start---*/
+.menu-icon {
+    height: 2.3rem;
+    width: 2.3rem;
+    position: relative;
+    display: none;
+}
+
+.menu-icon span {
+    height: 4px;
+    width: 100%;
+    background-color: white;
+    border-radius: 25px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: .3s ease;
+}
+
+.menu-icon span:nth-child(1) {
+    top: 20%;
+}
+
+.menu-icon span:nth-child(3) {
+    top: 80%;
+}
+
+.menu-icon.active span:nth-child(1) {
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.menu-icon.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-icon.active span:nth-child(3) {
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/*---Hamburger Icon End---*/
+
+/*---Navigation End---*/
+
+/*---Off Screen Menu---*/
+.drawer {
+    background-color: var(--dark-green);
+    color: white;
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 6rem 3rem 2rem 2rem;
+    text-align: left;
+    transition: .3s ease-in-out;
+    right: -100%;
+    border-top: 1px solid white;
+    justify-content: space-between;
+    z-index: 8888;
+}
+
+.drawer.active {
+    right: 0;
+}
+
+.drawer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.drawer li {
+    font-size: 2rem;
+}
+
+.drawer li a {
+    text-decoration: none;
+    color: white;
+    transition: all .3s ease-in-out;
+}
+
+.drawer li a:hover {
+    color: var(--bright-yellow);
+    outline: none;
+}
+
+.drawer-cta {
+    color: white;
+}
+
+/*---Off Screen Menu End---*/
+
+/*---Hero Section Start---*/
+.section-hero {
+    height: 100vh;
+    width: 100%;
+    /* Layer a semi-transparent black gradient over the image (Learn)*/ 
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/CampSite.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-text {
+    width: 49.375rem;
+    text-align: center;
+}
+
+/*---Select all direct children inside .hero-text except the last one---*/
+.hero-text > *:not(:last-child) {
+  margin-bottom: 1.6rem;
+}
+
+.hero-heading {
+    font-size: clamp(3rem, 1.684rem + 7.018vw, 8rem);
+    color: #FFFF99;
+    text-shadow: 2px 8px var(--primary-orange);
+}
+
+.hero-paragraph {
+    font-size: clamp(1rem, 0.934rem + 0.351vw, 1.25rem);
+    padding: 1rem;
+    color: white;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.4rem;
+}
+
+.hero-btn:link, .hero-btn:visited {
+    padding: 1rem 1.5rem;
+    border-radius: 3.125rem;
+    text-decoration: none;
+    font-size: 1.25rem;
+    font-weight: 500;
+    transition: all .4s ease-in-out;
+}
+
+.hero-btn-primary:link, .hero-btn-primary:visited {
+    color: white;
+    background-color: var(--primary-orange);
+}
+
+.hero-btn-primary:hover,.hero-btn-primary:active {
+    background-color: white;
+    color: var(--primary-orange);
+}
+
+.hero-btn-secondary:link, .hero-btn-secondary:visited {
+    color: black;
+    background-color: white;
+}
+
+.hero-btn-secondary:hover, .hero-btn-secondary:active {
+    color: white;
+    background-color: black;
+}
+
+/*---Hero Section End---*/
+
+/*---About Section Start---*/
+.section-about {
+    background-color: var(--light-lime);
+    padding: 3rem 2.2rem;
+}
+
+.about-heading {
+    color: var(--light-dark-green);
+}
+
+.about-paragraphs {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.about-text {
+    font-size: clamp(1rem, 0.967rem + 0.175vw, 1.125rem);
+    padding: 1rem 1rem 1rem 0;
+    line-height: 1.5rem;
+}
+
+.about-image {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.about-grid {
+    gap: 2rem;
+}
+
+.stat-grid {
+    gap: 2rem;
+}
+
+.about-stat {
+    background-color: var(--light-dark-green);
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    text-align: center;
+    padding: 0.5rem 0;
+    color: white;
+    border-radius: 0.625rem;
+}
+
+.about-stat-title {
+    font-size: clamp(1rem, 0.967rem + 0.175vw, 1.125rem);
+}
+
+.about-stat-value {
+    font-size: clamp(1.5rem, 1.237rem + 1.404vw, 2.5rem);
+    font-weight: 600;
+    margin-top: 0.5rem;
+}
+/*---About Section End---*/
+
+/*---Characters Section Start---*/
+.section-characters {
+    padding: 3rem 2.2rem;
+    background-color: var(--primary-orange);
+}
+
+.characters-heading {
+    color: var(--dark-brown);
+    margin-bottom: 2rem;
+}
+
+.character-card {
+    background-color: var(--dark-brown);
+    border-radius: 10px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    color: var(--primary-orange);
+}
+
+.character-heading {
+    color: var(--primary-orange);
+    font-size: clamp(1.25rem, 0.921rem + 1.754vw, 2.5rem);
+}
+
+.character-box {
+    height: 100px;
+    width: 100px;
+    background-color: var(--primary-orange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    border-radius: 10px;
+}
+
+.character-box img {
+    width: 100%;
+    height: 100%;
+}
+/*---Characters Section End---*/
+
+/*---Episodes Section Start---*/
+.section-episodes {
+    padding: 3rem 2.2rem;
+    background-color: var(--dark-green);
+}
+
+.episodes-heading {
+    color: var(--bright-yellow);
+}
+
+.episodes-top-section {
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem 0;
+}
+
+.seasons-selector {
+    padding: 0.5rem;
+    border-radius: 10px;
+    background-color: var(--bright-yellow);
+    color: var(--dark-green);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.seasons-page {
+    color: white;
+    font-size: 1.2rem;
+}
+
+.episode-card {
+    background-color: var(--light-green);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border-radius: 10px;
+    color: white;
+}
+
+.episode-description {
+    flex: 1;
+}
+
+.episode-redirect {
+    display: inline-block;
+    width: 100%;
+    background-color: var(--dark-green);
+    padding: 0.5rem;
+    text-align: center;
+    border-radius: 5px;
+    transition: all .3s ease-in-out;
+}
+
+.episode-redirect:link, .episode-redirect:visited {
+    display: inline-block;
+    width: 100%;
+    background-color: var(--dark-green);
+    padding: 0.5rem;
+    text-align: center;
+    border-radius: 5px;
+    transition: all .3s ease-in-out;
+}
+
+.episode-redirect:hover, .episode-redirect:active{
+    color: var(--dark-green);
+    background-color: white;
+    font-weight: 600;
+}
+/*---Episodes Section End---*/
+
+/*---Videos Section Start---*/
+.section-videos {
+    background-color: white;
+    padding: 3rem 2.2rem;
+}
+
+.videos-heading {
+    color: var(--dark-green);
+    margin-bottom: 2rem;
+}
+
+.video-card {
+    background-color: var(--dark-green);
+    border-radius: 10px;
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.video-image-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    overflow: hidden;
+}
+
+.video-image {
+    width: 100%;
+    max-width: 100%; 
+    display: block;  
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.video-play {
+    position: absolute;
+    z-index: 1;
+    height: 6.25rem;
+    width: 6.25rem;
+    background-color: var(--play-button-outline-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .3s ease-in-out;
+}
+
+.video-play-icon {
+    color: black;
+    height: 3.125rem;
+    width: 3.125rem;
+    transition: all .3s ease-in-out;
+}
+
+.video-play.video-play-icon:hover {
+    background-color: black;
+}
+
+.video-play:hover {
+  background-color: black;
+}
+
+.video-play:hover .video-play-icon {
+  color: var(--play-button-outline-color);
+}
+
+.video-text {
+    padding: 1.2rem;
+}
+
+.video-heading {
+    color: white;
+}
+
+.video-button {
+    background-color: var(--bright-yellow);
+    padding: 0.4rem 0.3rem; 
+    border-radius: 10px;
+    border: 2px solid transparent;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem; 
+    font-size: 0.8; 
+    font-weight: 500;
+    transition: all .3s ease-in-out;
+    min-width: 0; 
+    overflow: hidden; 
+    white-space: nowrap;
+}
+
+.video-button:hover {
+    background-color: var(--dark-green);
+    border: 2px solid var(--bright-yellow);
+    color: var(--bright-yellow);
+}
+
+.video-button:hover .video-icon {
+    color: var(--bright-yellow);
+}
+
+.video-icon {
+    height: 1.5625rem;
+    width: 1.5625rem;
+}
+
+#video-icon {
+    height: 1.875rem;
+    width: 1.875rem;
+}
+
+.ATF-button {
+    grid-column: span 2;
+}
+
+.video-button-more {
+    font-size: 1.5rem;
+    grid-column: span 3;
+    padding: 1rem;
+    text-align: center;
+    background-color: var(--dark-green);
+    color: white;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.video-button-more:hover {
+    background-color: white;
+    border: 2px solid var(--dark-green);
+    color: var(--dark-green);
+    font-weight: 600;
+}
+/*---Videos Section End---*/
+
+/*---Footer Section Start---*/
+footer {
+    width: 100%;
+    padding: 3rem 2.2rem;
+    background-color: var(--dark-brown);  
+}
+
+.footer-cp {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 60%;
+}
+
+.footer-logo {
+    height: 4.375rem;
+    width: 5.9375rem;
+}
+
+.footer-text {
+    font-size: 1rem;
+    color: white;
+    font-weight: 500;
+}
+
+.socials {
+    display: flex;
+    gap: 1rem;
+}
+
+.footer-socials {
+    height: 1.875rem;
+    width: 1.875rem;
+    color: var(--bright-yellow);
+    transition: all .3s ease-in-out;
+}
+
+.footer-socials:hover {
+    color: white;
+}
+
+.footer-navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.footer-heading {
+    color: white;
+}
+
+.footer-links {
+    color: white;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.footer-link {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    transition: all .3s ease-in-out;
+}
+
+.footer-link:hover {
+    color: var(--bright-yellow);
+}
+/*---Footer Section End---*/
+
